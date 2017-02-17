@@ -18,5 +18,16 @@ namespace Bekk.ExcelCreator.Tests
             var target = new CellAddress(row, col);
             return target.ToString();
         }
+
+        [TestCase("A1", 0u, 0u)]
+        [TestCase("z134", 133u, 25u)]
+        [TestCase("AA2", 1u, 26u)]
+        [TestCase("XFD14", 13u, 16383u)]
+        public void Parse_WithValidValues_ReturnsAddress(string input, uint expectedRow, uint expectedCol)
+        {
+            var result = CellAddress.Parse(input);
+            Assert.That(result.Col, Is.EqualTo(expectedCol));
+            Assert.That(result.Row, Is.EqualTo(expectedRow));
+        }
     }
 }

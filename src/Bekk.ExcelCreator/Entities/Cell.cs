@@ -1,4 +1,4 @@
-using System;
+using System.Globalization;
 using System.Xml.Linq;
 using Bekk.ExcelCreator.Xml;
 
@@ -26,18 +26,45 @@ namespace Bekk.ExcelCreator.Entities
         protected abstract void AddValue(XElement cell, NamespaceDirectory ns);
     }
 
-    class IntegerCell : Cell
+    abstract class NumericCell<T> : Cell
     {
-        private readonly int _value;
+        protected T Value { get; }
 
-        public IntegerCell(CellAddress address, int value) : base(address)
+        public NumericCell(CellAddress address, T value):base(address)
         {
-            _value = value;
+            Value = value;
         }
 
+        protected abstract string ToString(T value); 
         protected override void AddValue(XElement cell, NamespaceDirectory ns)
         {
-            cell.Add(new XElement(ns.NamespaceMain.GetName("v"), _value));
+            cell.Add(new XElement(ns.NamespaceMain.GetName("v"), ToString(Value)));
         }
+    } 
+
+    class IntegerCell : NumericCell<int>
+    {
+        public IntegerCell(CellAddress address, int value) : base(address, value)
+        {
+        }
+
+        protected override string ToString(int value) => value.ToString(CultureInfo.InvariantCulture);
+    }
+
+    class DecimalCell : NumericCell<decimal>
+    {
+        public DecimalCell(CellAddress address, decimal value) : base(address, value)
+        {
+        }
+
+        protected override string ToString(decimal value) => value.ToString(CultureInfo.InvariantCulture);
+    }
+    class DoubleCell : NumericCell<double>
+    {
+        public DoubleCell(CellAddress address, double value) : base(address, value)
+        {
+        }
+
+        protected override string ToString(double value) => value.ToString(CultureInfo.InvariantCulture);
     }
 }
