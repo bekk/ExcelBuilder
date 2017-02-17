@@ -82,5 +82,10 @@ namespace Bekk.ExcelCreator.Entities
         }
 
         public override bool Equals(object obj) => obj is CellAddress && Equals((CellAddress) obj);
+
+        public static bool operator ==(CellAddress left, CellAddress right) => left.Equals(right);
+        public static bool operator !=(CellAddress left, CellAddress right) => !left.Equals(right);
+
+        public static implicit operator CellAddress(string address) => new CellAddress(address);
     }
 }

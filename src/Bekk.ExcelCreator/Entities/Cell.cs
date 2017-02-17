@@ -67,4 +67,20 @@ namespace Bekk.ExcelCreator.Entities
 
         protected override string ToString(double value) => value.ToString(CultureInfo.InvariantCulture);
     }
+
+    class TextCell : Cell
+    {
+        private int _value;
+
+        public TextCell(Workbook root, CellAddress address, string value):base(address)
+        {
+            _value = root.AddString(value);
+        }
+
+        protected override void AddValue(XElement cell, NamespaceDirectory ns)
+        {
+            cell.Add(new XAttribute("t", "s"));
+            cell.Add(new XElement(ns.NamespaceMain.GetName("v"), _value));
+        }
+    }
 }

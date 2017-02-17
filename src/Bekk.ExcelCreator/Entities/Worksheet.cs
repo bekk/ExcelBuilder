@@ -38,6 +38,11 @@ namespace Bekk.ExcelCreator.Entities
             _cells[address] = new DoubleCell(address, value);
         }
 
+        public void SetValue(CellAddress address, string value)
+        {
+            _cells[address] = new TextCell(_parent, address, value);
+        }
+
         public XDocument GetDocument()
         {
             var w = _ns.NamespaceMain;

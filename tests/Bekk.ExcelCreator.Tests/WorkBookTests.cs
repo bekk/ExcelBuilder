@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.IO;
 using Bekk.ExcelCreator.Entities;
 using NUnit.Framework;
@@ -16,8 +14,9 @@ namespace Bekk.ExcelCreator.Tests
             var sheet = wb.CreateWorksheet("Det første");
             sheet.SetValue(new CellAddress(3,5), 42);
             sheet.SetValue(new CellAddress("A2"), 3.5m);
-            sheet.SetValue(new CellAddress("A2"), 13);
+            sheet.SetValue("A2", 13);
             sheet.SetValue(new CellAddress("A3"), Math.PI);
+            sheet.SetValue(new CellAddress("f7"), "Dette er en tekst");
             return target.ToStream();
         }
 
