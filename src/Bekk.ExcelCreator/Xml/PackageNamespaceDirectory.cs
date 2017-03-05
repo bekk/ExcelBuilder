@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bekk.ExcelCreator.Xml
+namespace Bekk.ExcelBuilder.Xml
 {
     class PackageNamespaceDirectory
     {

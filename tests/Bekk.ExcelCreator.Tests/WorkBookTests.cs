@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using Bekk.ExcelCreator.Entities;
+using Bekk.ExcelBuilder.Entities;
 using NUnit.Framework;
 
-namespace Bekk.ExcelCreator.Tests
+namespace Bekk.ExcelBuilder.Tests
 {
     public class WorkBookTests
     {

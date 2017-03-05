@@ -7,8 +7,8 @@
     <ProjectGuid>{8CBC7403-553B-4E7A-91F3-BB1DCF82AAED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bekk.ExcelCreator.Tests</RootNamespace>
-    <AssemblyName>Bekk.ExcelCreator.Tests</AssemblyName>
+    <RootNamespace>Bekk.ExcelBuilder.Tests</RootNamespace>
+    <AssemblyName>Bekk.ExcelBuilder.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -36,9 +36,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bekk.ExcelCreator\Bekk.ExcelCreator.csproj">
+    <ProjectReference Include="..\..\src\Bekk.ExcelCreator\Bekk.ExcelBuilder.csproj">
       <Project>{6276d59a-2d0d-451c-8444-78f9355cf61e}</Project>
-      <Name>Bekk.ExcelCreator</Name>
+      <Name>Bekk.ExcelBuilder</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

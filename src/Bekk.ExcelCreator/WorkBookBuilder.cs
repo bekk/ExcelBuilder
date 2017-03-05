@@ -2,10 +2,10 @@
 using System.IO;
 using System.IO.Packaging;
 using System.Xml.Linq;
-using Bekk.ExcelCreator.Entities;
-using Bekk.ExcelCreator.Xml;
+using Bekk.ExcelBuilder.Entities;
+using Bekk.ExcelBuilder.Xml;
 
-namespace Bekk.ExcelCreator
+namespace Bekk.ExcelBuilder
 {
     public class WorkBookBuilder
     {

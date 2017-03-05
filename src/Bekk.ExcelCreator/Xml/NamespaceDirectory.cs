@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace Bekk.ExcelCreator.Xml
+namespace Bekk.ExcelBuilder.Xml
 {
     class NamespaceDirectory
     {

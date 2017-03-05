@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Bekk.ExcelCreator.Xml;
+using Bekk.ExcelBuilder.Xml;
 
-namespace Bekk.ExcelCreator.Entities
+namespace Bekk.ExcelBuilder.Entities
 {
     public class Workbook
     {
