@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Xml.Linq;
+using Bekk.ExcelBuilder.Contracts;
 using Bekk.ExcelBuilder.Xml;
 
 namespace Bekk.ExcelBuilder.Entities

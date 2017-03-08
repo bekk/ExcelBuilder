@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Bekk.ExcelBuilder.Contracts;
+using Bekk.ExcelBuilder.Entities.Collections;
 using Bekk.ExcelBuilder.Xml;
 
 namespace Bekk.ExcelBuilder.Entities
 {
-    public class Workbook
+    public class Workbook : IWorkbook
     {
-        private readonly IList<Worksheet> _sheets = new List<Worksheet>();
         private readonly NamespaceDirectory _ns = new NamespaceDirectory();
         private IList<string> _sharedStrings;
- 
-        public Worksheet CreateWorksheet(string name)
+        private readonly WorksheetCollection _sheets;
+
+        public Workbook()
         {
-            if(_sheets.Select(s=>s.Name).Any(n => n == name)) throw new ArgumentException($"The name {name} is in use", nameof(name));
-            var id = _sheets.Any() ? _sheets.Select(s => s.Id).Max() + 1 : 1;
-            var sheet = new Worksheet(name, id, this);
-            _sheets.Add(sheet);
-            return sheet;
+            _sheets = new WorksheetCollection(this);
         }
 
         public XDocument GetDocument()
@@ -51,11 +49,13 @@ namespace Bekk.ExcelBuilder.Entities
         {
             get
             {
-                if (!_sheets.Any())
-                    CreateWorksheet("Empty worksheet");
-                return _sheets;
+                var sheets = _sheets.GetWorksheets();
+                if (!sheets.Any()) return new []{new Worksheet("Empty worksheet", 1, this)};
+                return sheets;
             }
         }
+
+        IEntityCollection<IWorksheet, string> IWorkbook.Worksheets => throw new NotImplementedException();
 
         public int AddString(string text)
         {

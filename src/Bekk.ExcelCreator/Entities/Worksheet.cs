@@ -2,11 +2,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Bekk.ExcelBuilder.Contracts;
 using Bekk.ExcelBuilder.Xml;
 
 namespace Bekk.ExcelBuilder.Entities
 {
-    public class Worksheet
+    public class Worksheet : IWorksheet
     {
         private readonly Workbook _parent;
         private readonly IDictionary<CellAddress, Cell> _cells = new ConcurrentDictionary<CellAddress, Cell>();

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Bekk.ExcelBuilder.Entities
+namespace Bekk.ExcelBuilder.Contracts
 {
     public struct CellAddress : IComparable<CellAddress>, IEquatable<CellAddress>
     {

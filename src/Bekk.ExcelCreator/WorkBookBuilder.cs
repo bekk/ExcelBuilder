@@ -2,27 +2,30 @@
 using System.IO;
 using System.IO.Packaging;
 using System.Xml.Linq;
+using Bekk.ExcelBuilder.Contracts;
 using Bekk.ExcelBuilder.Entities;
 using Bekk.ExcelBuilder.Xml;
 
 namespace Bekk.ExcelBuilder
 {
-    public class WorkBookBuilder
+    public class WorkBookBuilder: IWorkbookBuilder
     {
-        public Workbook Workbook { get; } = new Workbook();
+        private readonly Workbook _workbook = new Workbook();
+        public IWorkbook Workbook => _workbook;
 
         public Stream ToStream()
         {
+            var wb = _workbook;
             var ns = new PackageNamespaceDirectory();
             var memoryStream = new MemoryStream();
             using (var package = Package.Open(memoryStream, FileMode.Create, FileAccess.ReadWrite))
             {
-                var workBook = AddPart(package, null, ns.WorkBookUri, Workbook.GetDocument(), ns.NsWorkbook,
+                var workBook = AddPart(package, null, ns.WorkBookUri, wb.GetDocument(), ns.NsWorkbook,
                     ns.NsWorkbookRel, "RiD1");
-                AddPart(package, workBook, ns.SharedStringUri, Workbook.GetSharedStringsDocument(), ns.NsSharedString,
+                AddPart(package, workBook, ns.SharedStringUri, wb.GetSharedStringsDocument(), ns.NsSharedString,
                     ns.NsSharedStringRel, "rIdSharedStrings");
 
-                foreach (var worksheet in Workbook.Worksheets)
+                foreach (var worksheet in wb.Worksheets)
                 {
                     AddPart(package, workBook, ns.WorksheetUri(worksheet.Id), worksheet.GetDocument(), ns.NsWorksheet,
                         ns.NsWorksheetRel, worksheet.RelId);

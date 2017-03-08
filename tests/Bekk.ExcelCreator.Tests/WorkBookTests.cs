@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Bekk.ExcelBuilder.Entities;
+using Bekk.ExcelBuilder.Contracts;
 using NUnit.Framework;
 
 namespace Bekk.ExcelBuilder.Tests
@@ -11,7 +11,7 @@ namespace Bekk.ExcelBuilder.Tests
         {
             var target = new WorkBookBuilder();
             var wb = target.Workbook;
-            var sheet = wb.CreateWorksheet("Det første");
+            var sheet = wb.Worksheets["Det første"];
             sheet.SetValue(new CellAddress(3,5), 42);
             sheet.SetValue(new CellAddress("A2"), 3.5m);
             sheet.SetValue("A2", 13);

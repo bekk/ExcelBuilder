@@ -1,4 +1,4 @@
-﻿using Bekk.ExcelBuilder.Entities;
+﻿using Bekk.ExcelBuilder.Contracts;
 using NUnit.Framework;
 
 namespace Bekk.ExcelBuilder.Tests
