@@ -1,33 +1,35 @@
 ﻿using Bekk.ExcelBuilder.Contracts;
-using NUnit.Framework;
+using Xunit;
 
 namespace Bekk.ExcelBuilder.Tests
 {
     public class CellAddressTests
     {
-        [TestCase(0u,0u, ExpectedResult = "A1")]
-        [TestCase(1u,0u, ExpectedResult = "A2")]
-        [TestCase(0u,1u, ExpectedResult = "B1")]
-        [TestCase(1u,25u, ExpectedResult = "Z2")]
-        [TestCase(1u,26u, ExpectedResult = "AA2")]
-        [TestCase(1u,27u, ExpectedResult = "AB2")]
-        [TestCase(1u,82u, ExpectedResult = "CE2")]
-        [TestCase(13u, 16383u, ExpectedResult = "XFD14")]
-        public string ToString_WithValidValues_ReturnsCorrectAddress(uint row, uint col)
+		[Theory]
+		[InlineData(0u,0u, "A1")]
+		[InlineData(1u, 0u, "A2")]
+		[InlineData(0u, 1u, "B1")]
+		[InlineData(1u, 25u, "Z2")]
+		[InlineData(1u, 26u, "AA2")]
+		[InlineData(1u, 27u, "AB2")]
+		[InlineData(1u, 82u, "CE2")]
+		[InlineData(13u, 16383u, "XFD14")]
+        public void ToString_WithValidValues_ReturnsCorrectAddress(uint row, uint col, string expected)
         {
             var target = new CellAddress(row, col);
-            return target.ToString();
+			Assert.Equal(expected, target.ToString());
         }
 
-        [TestCase("A1", 0u, 0u)]
-        [TestCase("z134", 133u, 25u)]
-        [TestCase("AA2", 1u, 26u)]
-        [TestCase("XFD14", 13u, 16383u)]
+		[Theory]
+		[InlineData("A1", 0u, 0u)]
+		[InlineData("z134", 133u, 25u)]
+		[InlineData("AA2", 1u, 26u)]
+		[InlineData("XFD14", 13u, 16383u)]
         public void Parse_WithValidValues_ReturnsAddress(string input, uint expectedRow, uint expectedCol)
         {
             var result = CellAddress.Parse(input);
-            Assert.That(result.Col, Is.EqualTo(expectedCol));
-            Assert.That(result.Row, Is.EqualTo(expectedRow));
+            Assert.Equal(expectedCol,result.Col);
+            Assert.Equal(expectedRow, result.Row);
         }
     }
 }

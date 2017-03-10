@@ -55,7 +55,7 @@ namespace Bekk.ExcelBuilder.Entities
             }
         }
 
-        IEntityCollection<IWorksheet, string> IWorkbook.Worksheets => throw new NotImplementedException();
+        IEntityCollection<IWorksheet, string> IWorkbook.Worksheets => _sheets;
 
         public int AddString(string text)
         {

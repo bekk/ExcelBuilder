@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bekk.ExcelBuilder", "src\Bekk.ExcelCreator\Bekk.ExcelBuilder.csproj", "{6276D59A-2D0D-451C-8444-78F9355CF61E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bekk.ExcelBuilder", "src\Bekk.ExcelCreator\Bekk.ExcelBuilder.csproj", "{6276D59A-2D0D-451C-8444-78F9355CF61E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6CA40B0C-FB78-4F1E-A97E-8E1DA7B1D021}"
 EndProject
