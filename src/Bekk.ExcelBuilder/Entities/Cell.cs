@@ -81,9 +81,9 @@ namespace Bekk.ExcelBuilder.Entities
     {
         private int _value;
 
-        public TextCell(Workbook root, CellAddress address, string value):base(address)
+        public TextCell(SharedStrings strings, CellAddress address, string value):base(address)
         {
-            _value = root.AddString(value);
+            _value = strings.AddString(value);
         }
 
         protected override void AddValue(XElement cell, NamespaceDirectory ns)

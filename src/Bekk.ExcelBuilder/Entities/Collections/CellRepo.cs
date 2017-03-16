@@ -5,12 +5,12 @@ using System.Collections;
 using System.Linq;
 using Bekk.ExcelBuilder.Contracts;
 
-namespace Bekk.ExcelCreator.Entities.Collections
+namespace Bekk.ExcelBuilder.Entities.Collections
 {
-    class CellCollection:IEnumerable<IHasFormatting>
+    class CellRepo: IEnumerable<IHasFormatting>
     {
         private IList<WorksheetCellCollection> _collections;
-        public CellCollection()
+        public CellRepo()
         {
             _collections = new List<WorksheetCellCollection>();
         }

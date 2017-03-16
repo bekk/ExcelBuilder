@@ -9,16 +9,19 @@ using Bekk.ExcelCreator.Entities.Collections;
 
 namespace Bekk.ExcelBuilder.Entities
 {
-    class Workbook : IWorkbook
+    class Workbook : IWorkbook, IHasDocument
     {
         private readonly NamespaceDirectory _ns = new NamespaceDirectory();
-        private IList<string> _sharedStrings;
+        private readonly SharedStrings _sharedStrings;
         private readonly WorksheetCollection _sheets;
-        private readonly CellCollection _cells;
+        private readonly CellRepo _cells;
+        private readonly StywleFactory _styles;
 
         public Workbook()
         {
-            _cells = new CellCollection();
+            _sharedStrings = new SharedStrings();
+            _cells = new CellRepo();
+            _styles = new StyleFactory(_cells);
             _sheets = new WorksheetCollection(this, _cells);
         }
 
@@ -35,25 +38,8 @@ namespace Bekk.ExcelBuilder.Entities
             return new XDocument(_ns.DefaultDeclaration, workbook);
         }
 
-		internal XDocument GetStylesDocument()
-		{
-			var w = _ns.NamespaceMain;
-			var styleSheet = new XElement(w.GetName("styleSheet"));
-			return new XDocument(_ns.DefaultDeclaration, styleSheet);
-		}
-
-		public XDocument GetSharedStringsDocument()
-        {
-            var w = _ns.NamespaceMain;
-            var sst = new XElement(w.GetName("sst"));
-            var strings = _sharedStrings ?? Enumerable.Empty<string>();
-            sst.Add(new XAttribute("count", strings.Count()));
-            sst.Add(new XAttribute("uniqueCount", strings.Count()));
-            sst.Add(_sharedStrings
-                .Select(txt => 
-                new XElement(w.GetName("si"), new XElement(w.GetName("t"), txt))));
-            return new XDocument(_ns.DefaultDeclaration, sst);
-        }
+        public IHasDocument Styles => _styles;
+		public IHasDocument SharedStrings => _sharedStrings;
 
         public IEnumerable<Worksheet> Worksheets
         {
@@ -66,12 +52,5 @@ namespace Bekk.ExcelBuilder.Entities
         }
 
         IEntityCollection<IWorksheet, string> IWorkbook.Worksheets => _sheets;
-
-        public int AddString(string text)
-        {
-            if(_sharedStrings == null) _sharedStrings = new List<string>();
-            if(!_sharedStrings.Contains(text)) _sharedStrings.Add(text);
-            return _sharedStrings.IndexOf(text);
-        }
     }
 }

@@ -20,14 +20,14 @@ namespace Bekk.ExcelBuilder
             var memoryStream = new MemoryStream();
             using (var package = Package.Open(memoryStream, FileMode.Create, FileAccess.ReadWrite))
             {
-                var workBook = AddPart(package, null, ns.WorkBookUri, wb.GetDocument(), ns.NsWorkbook,
+                var workBook = AddPart(package, null, ns.WorkBookUri, wb, ns.NsWorkbook,
                     ns.NsWorkbookRel, "RiD1");
-                AddPart(package, workBook, ns.SharedStringUri, wb.GetSharedStringsDocument(), ns.NsSharedString,
+                AddPart(package, workBook, ns.SharedStringUri, wb.SharedStrings, ns.NsSharedString,
                     ns.NsSharedStringRel, "rIdSharedStrings");
-				AddPart(package, workBook, ns.StylesUri, wb.GetStylesDocument(), ns.NsStyles, ns.NsStylesRel, "RiD2");
+				AddPart(package, workBook, ns.StylesUri, wb.Styles, ns.NsStyles, ns.NsStylesRel, "RiD2");
                 foreach (var worksheet in wb.Worksheets)
                 {
-                    AddPart(package, workBook, ns.WorksheetUri(worksheet.Id), worksheet.GetDocument(), ns.NsWorksheet,
+                    AddPart(package, workBook, ns.WorksheetUri(worksheet.Id), worksheet, ns.NsWorksheet,
                         ns.NsWorksheetRel, worksheet.RelId);
                 }
 
@@ -37,8 +37,9 @@ namespace Bekk.ExcelBuilder
             return memoryStream;
         }
 
-        private PackagePart AddPart(Package package, PackagePart parent, Uri uri, XDocument document, string ns, string nsRel, string relId)
+        private PackagePart AddPart(Package package, PackagePart parent, Uri uri, IHasDocument hasDocument, string ns, string nsRel, string relId)
         {
+            var document = hasDocument.GetDocument();
             if (document == null) return null;
             var partUri = PackUriHelper.CreatePartUri(uri);
             var part = package.CreatePart(partUri, ns);

@@ -7,15 +7,15 @@ using Bekk.ExcelCreator.Entities.Collections;
 
 namespace Bekk.ExcelBuilder.Entities
 {
-    class Worksheet : IWorksheet
+    class Worksheet : IWorksheet, IHasDocument
     {
-        private readonly Workbook _parent;
         private readonly NamespaceDirectory _ns;
         private readonly IWorksheetCellCollection _cells;
+        private readonly SharedStrings _strings;
 
-        public Worksheet(string name, int id, Workbook parent, IWorksheetCellCollection cells)
+        public Worksheet(string name, int id, IWorksheetCellCollection cells, SharedStrings strings)
         {
-            _parent = parent;
+            _strings = strings;
             _cells = cells;
             Name = name;
             Id = id;
@@ -42,7 +42,7 @@ namespace Bekk.ExcelBuilder.Entities
 
         public ICell SetValue(CellAddress address, string value)
         {
-            return _cells[address] = new TextCell(_parent, address, value);
+            return _cells[address] = new TextCell(_strings, address, value);
         }
 
         public XDocument GetDocument()

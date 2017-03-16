@@ -11,9 +11,9 @@ namespace Bekk.ExcelBuilder.Entities.Collections
     {
         private readonly Workbook _parent;
         private IList<Worksheet> _sheets = new List<Worksheet>();
-        private readonly CellCollection _cells;
+        private readonly CellRepo _cells;
 
-        public WorksheetCollection(Workbook parent, CellCollection cells)
+        public WorksheetCollection(Workbook parent, CellRepo cells)
         {
             _parent = parent;
             _cells = cells;
