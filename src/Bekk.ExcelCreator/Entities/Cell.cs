@@ -1,13 +1,21 @@
+using System;
 using System.Globalization;
 using System.Xml.Linq;
 using Bekk.ExcelBuilder.Contracts;
+using Bekk.ExcelBuilder.Contracts.Formatting;
+using Bekk.ExcelBuilder.Entities.Formatting;
 using Bekk.ExcelBuilder.Xml;
+using Bekk.ExcelCreator.Entities.Formatting;
 
 namespace Bekk.ExcelBuilder.Entities
 {
-    abstract class Cell
+    abstract class Cell : ICell, IHasFormatting
     {
+		private ICellFormat format;
         public CellAddress Address { get; }
+		public ICellFormat Format { get { return format ?? (format = new CellFormat()); } set { format = value; } }
+
+        public Func<int> GetFormatId { private get; set; }
 
         protected Cell(CellAddress address)
         {

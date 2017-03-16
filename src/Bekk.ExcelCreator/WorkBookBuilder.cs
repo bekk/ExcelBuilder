@@ -24,7 +24,7 @@ namespace Bekk.ExcelBuilder
                     ns.NsWorkbookRel, "RiD1");
                 AddPart(package, workBook, ns.SharedStringUri, wb.GetSharedStringsDocument(), ns.NsSharedString,
                     ns.NsSharedStringRel, "rIdSharedStrings");
-
+				AddPart(package, workBook, ns.StylesUri, wb.GetStylesDocument(), ns.NsStyles, ns.NsStylesRel, "RiD2");
                 foreach (var worksheet in wb.Worksheets)
                 {
                     AddPart(package, workBook, ns.WorksheetUri(worksheet.Id), worksheet.GetDocument(), ns.NsWorksheet,

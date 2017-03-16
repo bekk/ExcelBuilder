@@ -1,22 +1,25 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Bekk.ExcelBuilder.Contracts;
 using Bekk.ExcelBuilder.Entities.Collections;
 using Bekk.ExcelBuilder.Xml;
+using Bekk.ExcelCreator.Entities.Collections;
 
 namespace Bekk.ExcelBuilder.Entities
 {
-    public class Workbook : IWorkbook
+    class Workbook : IWorkbook
     {
         private readonly NamespaceDirectory _ns = new NamespaceDirectory();
         private IList<string> _sharedStrings;
         private readonly WorksheetCollection _sheets;
+        private readonly CellCollection _cells;
 
         public Workbook()
         {
-            _sheets = new WorksheetCollection(this);
+            _cells = new CellCollection();
+            _sheets = new WorksheetCollection(this, _cells);
         }
 
         public XDocument GetDocument()
@@ -32,7 +35,14 @@ namespace Bekk.ExcelBuilder.Entities
             return new XDocument(_ns.DefaultDeclaration, workbook);
         }
 
-        public XDocument GetSharedStringsDocument()
+		internal XDocument GetStylesDocument()
+		{
+			var w = _ns.NamespaceMain;
+			var styleSheet = new XElement(w.GetName("styleSheet"));
+			return new XDocument(_ns.DefaultDeclaration, styleSheet);
+		}
+
+		public XDocument GetSharedStringsDocument()
         {
             var w = _ns.NamespaceMain;
             var sst = new XElement(w.GetName("sst"));
@@ -50,7 +60,7 @@ namespace Bekk.ExcelBuilder.Entities
             get
             {
                 var sheets = _sheets.GetWorksheets();
-                if (!sheets.Any()) return new []{new Worksheet("Empty worksheet", 1, this)};
+                if (!sheets.Any()) return new []{new Worksheet("Empty worksheet", 1, this, _cells.Create())};
                 return sheets;
             }
         }

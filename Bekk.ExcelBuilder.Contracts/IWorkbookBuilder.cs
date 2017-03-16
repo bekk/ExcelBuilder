@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace Bekk.ExcelBuilder.Contracts
 {
-    public interface IWorkbookBuilder
-    {
-        IWorkbook Workbook { get; }
-        Stream ToStream();
-    }
+	public interface IWorkbookBuilder
+	{
+		IWorkbook Workbook { get; }
+		Stream ToStream();
+	}
 }

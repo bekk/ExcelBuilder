@@ -1,13 +1,21 @@
 ﻿using System;
 using System.IO;
 using Bekk.ExcelBuilder.Contracts;
+using Bekk.ExcelBuilder.Contracts.Formatting;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Bekk.ExcelBuilder.Tests
 {
     public class WorkBookTests
     {
-        private Stream Build()
+		readonly ITestOutputHelper output;
+
+		public WorkBookTests(ITestOutputHelper output)
+		{
+			this.output = output;
+		}
+		private Stream Build()
         {
             var target = new WorkBookBuilder();
             var wb = target.Workbook;
@@ -16,7 +24,7 @@ namespace Bekk.ExcelBuilder.Tests
             sheet.SetValue(new CellAddress("A2"), 3.5m);
             sheet.SetValue("A2", 13);
             sheet.SetValue(new CellAddress("A3"), Math.PI);
-            sheet.SetValue(new CellAddress("f7"), "Dette er en tekst");
+            sheet.SetValue(new CellAddress("f7"), "Dette er en tekst").Format.TextStyle = TextStyle.Bold|TextStyle.Italic;
             return target.ToStream();
         }
 
@@ -34,7 +42,7 @@ namespace Bekk.ExcelBuilder.Tests
                 result.CopyTo(file);
             }
             File.Move(path, path+".xlsx");
-			throw new Exception("Wrote to: "+path);
+			output.WriteLine("Wrote to: " + path);
         }
 
         //[Fact]
