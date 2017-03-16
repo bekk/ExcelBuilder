@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Bekk.ExcelBuilder.Entities.Collections;
 using Bekk.ExcelBuilder.Contracts;
 using Bekk.ExcelBuilder.Xml;
-using Bekk.ExcelCreator.Entities.Collections;
 
 namespace Bekk.ExcelBuilder.Entities
 {

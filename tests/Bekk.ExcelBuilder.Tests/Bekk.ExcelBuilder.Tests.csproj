@@ -9,8 +9,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\Bekk.ExcelCreator\Bekk.ExcelBuilder.csproj" />
-	  <ProjectReference Include="..\..\Bekk.ExcelBuilder.Contracts\Bekk.ExcelBuilder.Contracts.csproj" />
+	  <ProjectReference Include="..\..\src\Bekk.ExcelBuilder\Bekk.ExcelBuilder.csproj" />
+	  <ProjectReference Include="..\..\src\Bekk.ExcelBuilder.Contracts\Bekk.ExcelBuilder.Contracts.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

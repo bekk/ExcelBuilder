@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}/tests/Bekk.ExcelCreator.Tests/bin/Debug/netcoreapp1.0/Bekk.ExcelBuilder.Tests.dll",
+            "program": "${workspaceRoot}/tests/Bekk.ExcelBuilder.Tests/bin/Debug/netcoreapp1.0/Bekk.ExcelBuilder.Tests.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
             "externalConsole": false,

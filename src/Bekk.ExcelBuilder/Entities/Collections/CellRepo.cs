@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Bekk.ExcelCreator.Entities.Formatting;
+using Bekk.ExcelBuilder.Entities.Formatting;
 using Bekk.ExcelBuilder.Entities;
 using System.Collections;
 using System.Linq;

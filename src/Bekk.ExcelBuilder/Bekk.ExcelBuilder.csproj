@@ -19,7 +19,7 @@
     <Folder Include="Entities\Formatting\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Bekk.ExcelBuilder.Contracts\Bekk.ExcelBuilder.Contracts.csproj" />
+    <ProjectReference Include="..\Bekk.ExcelBuilder.Contracts\Bekk.ExcelBuilder.Contracts.csproj" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

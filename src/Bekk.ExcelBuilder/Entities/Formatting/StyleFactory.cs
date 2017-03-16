@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Xml.Linq;
+using Bekk.ExcelBuilder.Xml;
+
 namespace Bekk.ExcelBuilder.Entities.Formatting
 {
     class StyleFactory: IHasDocument
@@ -6,7 +10,7 @@ namespace Bekk.ExcelBuilder.Entities.Formatting
         {
             
         }
-        public XDocument GetStylesDocument()
+        public XDocument GetDocument()
 		{
             var ns = new NamespaceDirectory();
 			var w = ns.NamespaceMain;

@@ -1,8 +1,13 @@
+using System.Xml.Linq;
+using System.Collections.Generic;
+using System.Linq;
+using Bekk.ExcelBuilder.Xml;
+
 namespace Bekk.ExcelBuilder.Entities.Collections
 {
     public class SharedStrings: IHasDocument
     {
-        private List<strings> _sharedStrings;
+        private List<string> _sharedStrings;
 
         public int AddString(string text)
         {

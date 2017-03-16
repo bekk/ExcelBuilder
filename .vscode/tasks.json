@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/tests/Bekk.ExcelCreator.Tests/Bekk.ExcelBuilder.Tests.csproj"
+                "${workspaceRoot}/tests/Bekk.ExcelBuilder.Tests/Bekk.ExcelBuilder.Tests.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"

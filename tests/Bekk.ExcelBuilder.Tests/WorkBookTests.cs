@@ -44,13 +44,5 @@ namespace Bekk.ExcelBuilder.Tests
             File.Move(path, path+".xlsx");
 			output.WriteLine("Wrote to: " + path);
         }
-
-        //[Fact]
-        //public void Continous()
-        //{
-        //    var result = Build();
-
-        //    Assert.That(result, Has.Length.AtLeast(10));
-        //}
     }
 }

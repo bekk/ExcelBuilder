@@ -4,8 +4,8 @@ using System.Xml.Linq;
 using Bekk.ExcelBuilder.Contracts;
 using Bekk.ExcelBuilder.Contracts.Formatting;
 using Bekk.ExcelBuilder.Entities.Formatting;
+using Bekk.ExcelBuilder.Entities.Collections;
 using Bekk.ExcelBuilder.Xml;
-using Bekk.ExcelCreator.Entities.Formatting;
 
 namespace Bekk.ExcelBuilder.Entities
 {

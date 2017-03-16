@@ -4,8 +4,8 @@ using System.Linq;
 using System.Xml.Linq;
 using Bekk.ExcelBuilder.Contracts;
 using Bekk.ExcelBuilder.Entities.Collections;
+using Bekk.ExcelBuilder.Entities.Formatting;
 using Bekk.ExcelBuilder.Xml;
-using Bekk.ExcelCreator.Entities.Collections;
 
 namespace Bekk.ExcelBuilder.Entities
 {
@@ -15,14 +15,14 @@ namespace Bekk.ExcelBuilder.Entities
         private readonly SharedStrings _sharedStrings;
         private readonly WorksheetCollection _sheets;
         private readonly CellRepo _cells;
-        private readonly StywleFactory _styles;
+        private readonly StyleFactory _styles;
 
         public Workbook()
         {
             _sharedStrings = new SharedStrings();
             _cells = new CellRepo();
             _styles = new StyleFactory(_cells);
-            _sheets = new WorksheetCollection(this, _cells);
+            _sheets = new WorksheetCollection(_sharedStrings, _cells);
         }
 
         public XDocument GetDocument()
@@ -46,7 +46,7 @@ namespace Bekk.ExcelBuilder.Entities
             get
             {
                 var sheets = _sheets.GetWorksheets();
-                if (!sheets.Any()) return new []{new Worksheet("Empty worksheet", 1, this, _cells.Create())};
+                if (!sheets.Any()) return new []{new Worksheet("Empty worksheet", 1, _cells.Create(), _sharedStrings)};
                 return sheets;
             }
         }
