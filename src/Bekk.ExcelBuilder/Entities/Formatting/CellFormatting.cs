@@ -2,8 +2,8 @@
 
 namespace Bekk.ExcelBuilder.Entities.Formatting
 {
-	class CellFormat : ICellFormat
+	class CellFormatting : ICellFormat
 	{
-		public TextStyle TextStyle { get;set; }
+		public TextStyles TextStyle { get;set; }
 	}
 }

@@ -2,6 +2,7 @@
 
 namespace Bekk.ExcelBuilder.Xml
 {
+    //https://www.iso.org/standard/71691.html
     class PackageNamespaceDirectory
     {
         public string NsWorkbook => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml";

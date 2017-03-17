@@ -2,6 +2,6 @@
 {
 	public interface ICellFormat
 	{
-		TextStyle TextStyle { get; set; }
+		TextStyles TextStyle { get; set; }
 	}
 }

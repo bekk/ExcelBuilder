@@ -9,13 +9,14 @@ using Bekk.ExcelBuilder.Xml;
 
 namespace Bekk.ExcelBuilder.Entities
 {
-    abstract class Cell : ICell, IHasFormatting
+    abstract class Cell : ICell, IHasFormatting, IHasElement
     {
 		private ICellFormat format;
         public CellAddress Address { get; }
-		public ICellFormat Format { get { return format ?? (format = new CellFormat()); } set { format = value; } }
+		public ICellFormat Format { get { return format ?? (format = new CellFormatting()); } set { format = value; } }
 
         public Func<int> GetFormatId { private get; set; }
+        public bool HasFormat => format != null;
 
         protected Cell(CellAddress address)
         {
@@ -28,6 +29,9 @@ namespace Bekk.ExcelBuilder.Entities
             var w = ns.NamespaceMain;
             var c = new XElement(w.GetName("c"));
             c.Add(new XAttribute("r", Address));
+            if(GetFormatId != null){
+                c.Add(new XAttribute("s", GetFormatId()));
+            }
             AddValue(c, ns);
             return c;
         }

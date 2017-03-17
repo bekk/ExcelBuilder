@@ -24,7 +24,7 @@ namespace Bekk.ExcelBuilder.Tests
             sheet.SetValue(new CellAddress("A2"), 3.5m);
             sheet.SetValue("A2", 13);
             sheet.SetValue(new CellAddress("A3"), Math.PI);
-            sheet.SetValue(new CellAddress("f7"), "Dette er en tekst").Format.TextStyle = TextStyle.Bold|TextStyle.Italic;
+            sheet.SetValue(new CellAddress("f7"), "Dette er en tekst").Format.TextStyle = TextStyles.Bold|TextStyles.Italic;
             return target.ToStream();
         }
 

@@ -6,5 +6,6 @@ namespace Bekk.ExcelBuilder.Entities.Formatting
     public interface IHasFormatting : ExcelBuilder.Contracts.Formatting.IFormattable
     {
          Func<int> GetFormatId { set; }
+         bool HasFormat { get; }
     }
 }
